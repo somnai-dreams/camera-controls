@@ -1,61 +1,61 @@
-import * as _THREE from 'three';
+import type * as _THREE from 'three';
 import { THREESubset, ACTION, PointerInput, MouseButtons, Touches, FitToOptions, CameraControlsEventMap } from './types';
 import { EventDispatcher } from './EventDispatcher';
 export declare class CameraControls extends EventDispatcher {
     /**
-     * Injects THREE as the dependency. You can then proceed to use CameraControls.
-     *
-     * e.g
-     * ```javascript
-     * CameraControls.install( { THREE: THREE } );
-     * ```
-     *
-     * Note: If you do not wish to use enter three.js to reduce file size(tree-shaking for example), make a subset to install.
-     *
-     * ```js
-     * import {
-     * 	MOUSE,
-     * 	Vector2,
-     * 	Vector3,
-     * 	Vector4,
-     * 	Quaternion,
-     * 	Matrix4,
-     * 	Spherical,
-     * 	Box3,
-     * 	Sphere,
-     * 	Raycaster,
-     * 	MathUtils,
-     * } from 'three';
-     *
-     * const subsetOfTHREE = {
-     * 	MOUSE     : MOUSE,
-     * 	Vector2   : Vector2,
-     * 	Vector3   : Vector3,
-     * 	Vector4   : Vector4,
-     * 	Quaternion: Quaternion,
-     * 	Matrix4   : Matrix4,
-     * 	Spherical : Spherical,
-     * 	Box3      : Box3,
-     * 	Sphere    : Sphere,
-     * 	Raycaster : Raycaster,
-     * 	MathUtils : {
-     * 		DEG2RAD: MathUtils.DEG2RAD,
-     * 		clamp: MathUtils.clamp,
-     * 	},
-     * };
-
-     * CameraControls.install( { THREE: subsetOfTHREE } );
-     * ```
-     * @category Statics
-     */
+       * Injects THREE as the dependency. You can then proceed to use CameraControls.
+       *
+       * e.g
+       * ```javascript
+       * CameraControls.install( { THREE: THREE } );
+       * ```
+       *
+       * Note: If you do not wish to use enter three.js to reduce file size(tree-shaking for example), make a subset to install.
+       *
+       * ```js
+       * import {
+       * 	MOUSE,
+       * 	Vector2,
+       * 	Vector3,
+       * 	Vector4,
+       * 	Quaternion,
+       * 	Matrix4,
+       * 	Spherical,
+       * 	Box3,
+       * 	Sphere,
+       * 	Raycaster,
+       * 	MathUtils,
+       * } from 'three';
+       *
+       * const subsetOfTHREE = {
+       * 	MOUSE     : MOUSE,
+       * 	Vector2   : Vector2,
+       * 	Vector3   : Vector3,
+       * 	Vector4   : Vector4,
+       * 	Quaternion: Quaternion,
+       * 	Matrix4   : Matrix4,
+       * 	Spherical : Spherical,
+       * 	Box3      : Box3,
+       * 	Sphere    : Sphere,
+       * 	Raycaster : Raycaster,
+       * 	MathUtils : {
+       * 		DEG2RAD: MathUtils.DEG2RAD,
+       * 		clamp: MathUtils.clamp,
+       * 	},
+       * };
+  
+       * CameraControls.install( { THREE: subsetOfTHREE } );
+       * ```
+       * @category Statics
+       */
     static install(libs: {
         THREE: THREESubset;
     }): void;
-    /*
-    * list all ACTIONs
-    * @category Statics
-    */
-    static readonly ACTION: typeof ACTION;
+    /**
+     * list all ACTIONs
+     * @category Statics
+     */
+    static get ACTION(): typeof ACTION;
     /**
      * Minimum vertical angle in radians.
      * The angle has to be between `0` and `.maxPolarAngle` inclusive.
@@ -289,50 +289,56 @@ export declare class CameraControls extends EventDispatcher {
      * @category Constructor
      */
     constructor(camera: _THREE.PerspectiveCamera | _THREE.OrthographicCamera, domElement: HTMLElement);
-    /*
-    * The camera to be controlled
-    * @category Properties
-    */
-    camera: _THREE.PerspectiveCamera | _THREE.OrthographicCamera;
-    /*
-    * Whether or not the controls are enabled.
-    * `false` to disable user dragging/touch-move, but all methods works.
-    * @category Properties
-    */
-    enabled: boolean;
-    /*
-    * Returns `true` if the controls are active updating.
-    * readonly value.
-    * @category Properties
-    */
-    readonly active: boolean;
-    /*
-    * Getter for the current `ACTION`.
-    * readonly value.
-    * @category Properties
-    */
-    readonly currentAction: ACTION;
-    /*
-    * get/set Current distance.
-    * @category Properties
-    */
-    distance: number;
-    /*
-    * get/set the azimuth angle (horizontal) in radians.
-    * Every 360 degrees turn is added to `.azimuthAngle` value, which is accumulative.
-    * @category Properties
-    */
-    azimuthAngle: number;
-    /*
-    * get/set the polar angle (vertical) in radians.
-    * @category Properties
-    */
-    polarAngle: number;
-    /*
-    * Whether camera position should be enclosed in the boundary or not.
-    * @category Properties
-    */
-    boundaryEnclosesCamera: boolean;
+    /**
+     * The camera to be controlled
+     * @category Properties
+     */
+    get camera(): _THREE.PerspectiveCamera | _THREE.OrthographicCamera;
+    set camera(camera: _THREE.PerspectiveCamera | _THREE.OrthographicCamera);
+    /**
+     * Whether or not the controls are enabled.
+     * `false` to disable user dragging/touch-move, but all methods works.
+     * @category Properties
+     */
+    get enabled(): boolean;
+    set enabled(enabled: boolean);
+    /**
+     * Returns `true` if the controls are active updating.
+     * readonly value.
+     * @category Properties
+     */
+    get active(): boolean;
+    /**
+     * Getter for the current `ACTION`.
+     * readonly value.
+     * @category Properties
+     */
+    get currentAction(): ACTION;
+    /**
+     * get/set Current distance.
+     * @category Properties
+     */
+    get distance(): number;
+    set distance(distance: number);
+    /**
+     * get/set the azimuth angle (horizontal) in radians.
+     * Every 360 degrees turn is added to `.azimuthAngle` value, which is accumulative.
+     * @category Properties
+     */
+    get azimuthAngle(): number;
+    set azimuthAngle(azimuthAngle: number);
+    /**
+     * get/set the polar angle (vertical) in radians.
+     * @category Properties
+     */
+    get polarAngle(): number;
+    set polarAngle(polarAngle: number);
+    /**
+     * Whether camera position should be enclosed in the boundary or not.
+     * @category Properties
+     */
+    get boundaryEnclosesCamera(): boolean;
+    set boundaryEnclosesCamera(boundaryEnclosesCamera: boolean);
     /**
      * Adds the specified event listener.
      * Applicable event types (which is `K`) are:
@@ -456,6 +462,7 @@ export declare class CameraControls extends EventDispatcher {
      * @category Methods
      */
     dollyTo(distance: number, enableTransition?: boolean): Promise<void>;
+    dollyOnScroll(event: any): void;
     /**
      * Zoom in/out camera. The value is added to camera zoom.
      * Limits set with `.minZoom` and `.maxZoom`
@@ -514,7 +521,7 @@ export declare class CameraControls extends EventDispatcher {
      * @returns Transition end promise
      * @category Methods
      */
-    fitToBox(box3OrObject: _THREE.Box3 | _THREE.Object3D, enableTransition: boolean, { paddingLeft, paddingRight, paddingBottom, paddingTop }?: Partial<FitToOptions>): Promise<void[]>;
+    fitToBox(box3OrObject: _THREE.Box3 | _THREE.Object3D, enableTransition: boolean, { paddingLeft, paddingRight, paddingBottom, paddingTop, }?: Partial<FitToOptions>): Promise<void[]>;
     /**
      * Fit the viewport to the sphere or the bounding sphere of the object.
      * @param sphereOrMesh
