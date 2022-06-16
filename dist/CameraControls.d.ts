@@ -465,10 +465,10 @@ export declare class CameraControls extends EventDispatcher {
     /**
      * Dolly in/out camera position towards mouse position.
      * @param event Scroll event that triggers the dolly.
-     * @param distance Distance of dolly.
+     * @param scrollDivisor How much to divide the scroll value by.
      * @category Methods
      */
-    dollyOnScroll(event: any, distance: number): void;
+    dollyOnScroll(event: any, scrollDivisor?: number): void;
     /**
      * Zoom in/out camera. The value is added to camera zoom.
      * Limits set with `.minZoom` and `.maxZoom`

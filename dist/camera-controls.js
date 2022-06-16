@@ -1277,16 +1277,15 @@
 	    /**
 	     * Dolly in/out camera position towards mouse position.
 	     * @param event Scroll event that triggers the dolly.
-	     * @param distance Distance of dolly.
+	     * @param scrollDivisor How much to divide the scroll value by.
 	     * @category Methods
 	     */
-	    dollyOnScroll(event, distance) {
-	        const x = ((event.clientX - this._elementRect.x) / this._elementRect.width) * 2 - 1;
-	        const y = ((event.clientY - this._elementRect.y) / this._elementRect.height) * 2 +
-	            1;
-	        const _dollyscale = distance / this._sphericalEnd.radius;
-	        const _delta = Math.log(_dollyscale) / Math.log(0.95);
-	        return this._dollyInternal(_delta * -1, x, y);
+	    dollyOnScroll(event, scrollDivisor = 10) {
+	        const ctx = this._domElement.getBoundingClientRect();
+	        const x = ((event.clientX - ctx.left) / ctx.width) * 2 - 1;
+	        const y = ((event.clientY - ctx.top) / ctx.height) * -2 + 1;
+	        return this._dollyInternal(Math.log(Math.abs(event.deltaY / scrollDivisor)) *
+	            Math.sign(event.deltaY), x, y);
 	    }
 	    /**
 	     * Zoom in/out camera. The value is added to camera zoom.
