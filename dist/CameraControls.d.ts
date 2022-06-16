@@ -462,7 +462,7 @@ export declare class CameraControls extends EventDispatcher {
      * @category Methods
      */
     dollyTo(distance: number, enableTransition?: boolean): Promise<void>;
-    dollyOnScroll(event: any): void;
+    dollyOnScroll(event: any, distance: number): void;
     /**
      * Zoom in/out camera. The value is added to camera zoom.
      * Limits set with `.minZoom` and `.maxZoom`

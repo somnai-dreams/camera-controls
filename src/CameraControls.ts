@@ -1465,14 +1465,13 @@ export class CameraControls extends EventDispatcher {
     return this._createOnRestPromise(resolveImmediately);
   }
 
-  dollyOnScroll(event: any): void {
+  dollyOnScroll(event: any, distance: number): void {
     const x =
       ((event.clientX - this._elementRect.x) / this._elementRect.width) * 2 - 1;
     const y =
       ((event.clientY - this._elementRect.y) / this._elementRect.height) * 2 +
       1;
-    const _distance = 1000; // or any other distance
-    const _dollyscale = _distance / this._sphericalEnd.radius;
+    const _dollyscale = distance / this._sphericalEnd.radius;
     const _delta = Math.log(_dollyscale) / Math.log(0.95);
     return this._dollyInternal(_delta * -1, x, y);
   }
