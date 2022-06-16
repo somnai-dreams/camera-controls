@@ -1465,6 +1465,12 @@ export class CameraControls extends EventDispatcher {
     return this._createOnRestPromise(resolveImmediately);
   }
 
+  /**
+   * Dolly in/out camera position towards mouse position.
+   * @param event Scroll event that triggers the dolly.
+   * @param distance Distance of dolly.
+   * @category Methods
+   */
   dollyOnScroll(event: any, distance: number): void {
     const x =
       ((event.clientX - this._elementRect.x) / this._elementRect.width) * 2 - 1;

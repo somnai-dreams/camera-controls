@@ -1274,6 +1274,12 @@
 	            approxEquals(this._spherical.radius, this._sphericalEnd.radius, this.restThreshold);
 	        return this._createOnRestPromise(resolveImmediately);
 	    }
+	    /**
+	     * Dolly in/out camera position towards mouse position.
+	     * @param event Scroll event that triggers the dolly.
+	     * @param distance Distance of dolly.
+	     * @category Methods
+	     */
 	    dollyOnScroll(event, distance) {
 	        const x = ((event.clientX - this._elementRect.x) / this._elementRect.width) * 2 - 1;
 	        const y = ((event.clientY - this._elementRect.y) / this._elementRect.height) * 2 +
